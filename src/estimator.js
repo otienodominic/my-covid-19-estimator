@@ -1,4 +1,4 @@
-import { input } from '../data';
+import { input } from '../data/index';
 
 const covid19ImpactEstimator = (data) => ({
   data: input,
