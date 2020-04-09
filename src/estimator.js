@@ -1,7 +1,5 @@
 const covid19ImpactEstimator = (data) => {
   // Normalise the time in days, weeks and months
-
-  // eslint-disable-next-line no-shadow
   const normalisedPeriod = (data) => {
     const period = data.periodType;
     const elapsedTime = data.timeToElapse;
@@ -24,13 +22,24 @@ const covid19ImpactEstimator = (data) => {
   const infectedTwo = data.reportedCases * 50;
   const infectedBytimeOne = infectedOne * 2 ** (period / 3);
   const infectedBytimeTwo = infectedTwo * 2 ** (period / 3);
+
+  // Challenge Two:
+  const severeInfectionsBytimeOne = 0.15 * infectedBytimeOne;
+  const severeInfectionsBytimeTwo = 0.15 * infectedBytimeTwo;
+  const availableBedsOne = data.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne;
+  const availableBedsTwo = data.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo;
+
   const impact = {
     currentlyInfected: infectedOne,
-    infectionsByRequestedTime: infectedBytimeOne
+    infectionsByRequestedTime: infectedBytimeOne,
+    severeCasesByRequestedTime: severeInfectionsBytimeOne,
+    hospitalBedsByRequestedTime: availableBedsOne
   };
   const severeImpact = {
     currentlyInfected: infectedTwo,
-    infectionsByRequestedTime: infectedBytimeTwo
+    infectionsByRequestedTime: infectedBytimeTwo,
+    severeCasesByRequestedTime: severeInfectionsBytimeTwo,
+    hospitalBedsByRequestedTime: availableBedsTwo
   };
   return {
     data: input,
