@@ -27,8 +27,8 @@ const covid19ImpactEstimator = (data) => {
   // Challenge Two:
   const severeInfectionsBytimeOne = 0.15 * infectedBytimeOne;
   const severeInfectionsBytimeTwo = 0.15 * infectedBytimeTwo;
-  const availableBedsOne = input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne;
-  const availableBedsTwo = input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo;
+  const availableBedsOne = Math.round(input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne);
+  const availableBedsTwo = Math.round(input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo);
 
   const impact = {
     currentlyInfected: infectedOne,
