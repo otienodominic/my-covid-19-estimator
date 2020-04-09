@@ -27,20 +27,40 @@ const covid19ImpactEstimator = (data) => {
   // Challenge Two:
   const severeInfectionsBytimeOne = Math.round(0.15 * infectedBytimeOne);
   const severeInfectionsBytimeTwo = Math.round(0.15 * infectedBytimeTwo);
-  const availableBedsOne = Math.round(input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne);
-  const availableBedsTwo = Math.round(input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo);
+  const availableBedsOne = Math.round(
+    input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne
+  );
+  const availableBedsTwo = Math.round(
+    input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo
+  );
+
+  // Challenge Three:
+  const requireICUone = Math.round(0.05 * infectedBytimeOne);
+  const requireICUtwo = Math.round(0.05 * infectedBytimeTwo);
+  const requireVentilatorOne = Math.round(0.02 * infectedBytimeOne);
+  const requireVentilatorTwo = Math.round(0.02 * infectedBytimeTwo);
+  // eslint-disable-next-line max-len
+  const dollarsLostOne = Math.round(infectedBytimeOne * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
+  // eslint-disable-next-line max-len
+  const dollarsLostTwo = Math.round(infectedBytimeTwo * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
 
   const impact = {
     currentlyInfected: infectedOne,
     infectionsByRequestedTime: infectedBytimeOne,
     severeCasesByRequestedTime: severeInfectionsBytimeOne,
-    hospitalBedsByRequestedTime: availableBedsOne
+    hospitalBedsByRequestedTime: availableBedsOne,
+    casesForICUByRequestedTime: requireICUone,
+    casesForVentilatorsByRequestedTime: requireVentilatorOne,
+    dollarsInFlight: dollarsLostOne
   };
   const severeImpact = {
     currentlyInfected: infectedTwo,
     infectionsByRequestedTime: infectedBytimeTwo,
     severeCasesByRequestedTime: severeInfectionsBytimeTwo,
-    hospitalBedsByRequestedTime: availableBedsTwo
+    hospitalBedsByRequestedTime: availableBedsTwo,
+    casesForICUByRequestedTime: requireICUtwo,
+    casesForVentilatorsByRequestedTime: requireVentilatorTwo,
+    dollarsInFlight: dollarsLostTwo
   };
   return {
     data: input,
