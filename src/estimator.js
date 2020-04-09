@@ -1,20 +1,7 @@
-const data = {
-  region: {
-    name: 'Africa',
-    avgAge: 19.7,
-    avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71
-  },
-  periodType: 'days',
-  timeToElapse: 58,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
-};
-
 const covid19ImpactEstimator = (data) => {
-  //Normalise the time in days, weeks and months
+  // Normalise the time in days, weeks and months
 
+  // eslint-disable-next-line no-shadow
   const normalisedPeriod = (data) => {
     const period = data.periodType;
     const elapsedTime = data.timeToElapse;
