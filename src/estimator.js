@@ -1,6 +1,6 @@
 const covid19ImpactEstimator = (data) => {
   // Normalise the time in days, weeks and months
-  const normalisedPeriod = (data) => {
+  const normalisedPeriod = () => {
     const period = data.periodType;
     const elapsedTime = data.timeToElapse;
     switch (period) {
