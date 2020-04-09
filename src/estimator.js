@@ -1,6 +1,6 @@
 const covid19ImpactEstimator = (data) => {
   // Normalise the time in days, weeks and months
-  const normalisedPeriod = () => {
+  const normalisedPeriod = (data) => {
     const period = data.periodType;
     const elapsedTime = data.timeToElapse;
     switch (period) {
@@ -26,8 +26,10 @@ const covid19ImpactEstimator = (data) => {
   // Challenge Two:
   const severeInfectionsBytimeOne = 0.15 * infectedBytimeOne;
   const severeInfectionsBytimeTwo = 0.15 * infectedBytimeTwo;
-  const availableBedsOne = input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne;
-  const availableBedsTwo = input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo;
+  const availableBedsOne =
+    input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne;
+  const availableBedsTwo =
+    input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo;
 
   const impact = {
     currentlyInfected: infectedOne,
