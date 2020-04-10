@@ -36,8 +36,8 @@ const covid19ImpactEstimator = (data) => {
   const requireICUone = Math.trunc(0.05 * infectedBytimeOne);
   const requireICUtwo = Math.trunc(0.05 * infectedBytimeTwo);
   // Impact on Ventilators
-  const requireVentilatorOne = (infectedBytimeOne * 0.02);
-  const requireVentilatorTwo = (infectedBytimeTwo * 0.02);
+  const requireVentilatorOne = Math.trunc(infectedBytimeOne * 0.02);
+  const requireVentilatorTwo = Math.trunc(infectedBytimeTwo * 0.02);
   // eslint-disable-next-line max-len
   const dollarsLostOne = (infectedBytimeOne * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
   // eslint-disable-next-line max-len
