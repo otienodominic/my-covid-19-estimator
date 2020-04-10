@@ -3,7 +3,8 @@ const covid19ImpactEstimator = (data) => {
   // eslint-disable-next-line no-shadow
   const normalisedPeriod = (data) => {
     const period = data.periodType;
-    const elapsedTime = data.timeToElapse;
+    const timeElapsed = data.timeToElapse;
+    const elapsedTime = timeElapsed.toLowerCase();
     switch (period) {
       case 'days':
         return elapsedTime;
