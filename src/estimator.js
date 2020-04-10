@@ -4,7 +4,7 @@ const covid19ImpactEstimator = (data) => {
   const normalisedPeriod = (data) => {
     const period = data.periodType;
     const timeElapsed = data.timeToElapse;
-    const elapsedTime = timeElapsed.toLowerCase();
+    const elapsedTime = timeElapsed.toString().toLowerCase();
     switch (period) {
       case 'days':
         return elapsedTime;
