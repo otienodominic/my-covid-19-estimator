@@ -21,8 +21,8 @@ const covid19ImpactEstimator = (data) => {
   const period = normalisedPeriod(input);
   const infectedOne = input.reportedCases * 10;
   const infectedTwo = input.reportedCases * 50;
-  const infectedBytimeOne = infectedOne * 2 ** (period / 3);
-  const infectedBytimeTwo = infectedTwo * 2 ** (period / 3);
+  const infectedBytimeOne = infectedOne * 2 ** Math.round(period / 3);
+  const infectedBytimeTwo = infectedTwo * 2 ** Math.round(period / 3);
 
   // Challenge Two:
   const severeInfectionsBytimeOne = Math.round(0.15 * infectedBytimeOne);
