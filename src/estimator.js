@@ -22,28 +22,24 @@ const covid19ImpactEstimator = (data) => {
   const period = normalisedPeriod(input);
   const infectedOne = input.reportedCases * 10;
   const infectedTwo = input.reportedCases * 50;
-  const infectedBytimeOne = infectedOne * (2 ** Math.round(period / 3));
-  const infectedBytimeTwo = infectedTwo * (2 ** Math.round(period / 3));
+  const infectedBytimeOne = infectedOne * (2 ** Math.trunc(period / 3));
+  const infectedBytimeTwo = infectedTwo * (2 ** Math.trunc(period / 3));
 
   // Challenge Two:
-  const severeInfectionsBytimeOne = Math.round(0.15 * infectedBytimeOne);
-  const severeInfectionsBytimeTwo = Math.round(0.15 * infectedBytimeTwo);
-  const availableBedsOne = Math.round(
-    input.totalHospitalBeds * 0.35 - severeInfectionsBytimeOne
-  );
-  const availableBedsTwo = Math.round(
-    input.totalHospitalBeds * 0.35 - severeInfectionsBytimeTwo
-  );
+  const severeInfectionsBytimeOne = 0.15 * infectedBytimeOne;
+  const severeInfectionsBytimeTwo = 0.15 * infectedBytimeTwo;
+  const availableBedsOne = Math.trunc((input.totalHospitalBeds * 0.35) - severeInfectionsBytimeOne);
+  const availableBedsTwo = Math.trunc((input.totalHospitalBeds * 0.35) - severeInfectionsBytimeTwo);
 
   // Challenge Three:
-  const requireICUone = Math.round(0.05 * infectedBytimeOne);
-  const requireICUtwo = Math.round(0.05 * infectedBytimeTwo);
-  const requireVentilatorOne = Math.round(0.02 * infectedBytimeOne);
-  const requireVentilatorTwo = Math.round(0.02 * infectedBytimeTwo);
+  const requireICUone = Math.trunc(0.05 * infectedBytimeOne);
+  const requireICUtwo = Math.trunc(0.05 * infectedBytimeTwo);
+  const requireVentilatorOne = Math.trunc(0.02 * infectedBytimeOne);
+  const requireVentilatorTwo = Math.trunc(0.02 * infectedBytimeTwo);
   // eslint-disable-next-line max-len
-  const dollarsLostOne = Math.round(infectedBytimeOne * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
+  const dollarsLostOne = (infectedBytimeOne * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
   // eslint-disable-next-line max-len
-  const dollarsLostTwo = Math.round(infectedBytimeTwo * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
+  const dollarsLostTwo = (infectedBytimeTwo * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * period);
 
   const impact = {
     currentlyInfected: infectedOne,
