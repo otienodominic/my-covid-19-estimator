@@ -32,8 +32,10 @@ const covid19ImpactEstimator = (data) => {
   const availableBedsTwo = Math.trunc((input.totalHospitalBeds * 0.35) - severeInfectionsBytimeTwo);
 
   // Challenge Three:
+  // impact on ICUs
   const requireICUone = Math.trunc(0.05 * infectedBytimeOne);
   const requireICUtwo = Math.trunc(0.05 * infectedBytimeTwo);
+  // Impact on Ventilators
   const requireVentilatorOne = Math.trunc(0.02 * infectedBytimeOne);
   const requireVentilatorTwo = Math.trunc(0.02 * infectedBytimeTwo);
   // eslint-disable-next-line max-len
