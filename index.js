@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser());
 
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, 'access.js'),
+  path.join(__dirname, 'access.txt'),
   { flags: 'a' }
 );
 // setup the logger
@@ -26,7 +26,7 @@ app.use(
 );
 
 app.get('/api/v1/on-covid-19/logs', (req, res) => {
-  const data = fs.readFileSync(path.join(__dirname, './access.js'));
+  const data = fs.readFileSync(path.join(__dirname, './access.txt'));  
   res.status(200).send(data);
 });
 // server to listen to the port
