@@ -1,27 +1,21 @@
 const express = require('express');
 const cors = require('cors');
+const http = require('http');
 const bodyParser = require('body-parser');
 const xml = require('object-to-xml');
 const estimator = require('./src/estimator');
 
 const PORT = process.env.PORT || 3000;
-const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const app = express();
-app.set('port', PORT);
-app.set('env', NODE_ENV);
+const server = http.createServer(app);
 
 app.use(cors());
 app.use(bodyParser());
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(
-    `Express Server started on Port ${app.get(
-      'port'
-    )} | Environment : ${app.get('env')}`
-  );
-});
+server.listen(PORT);
+// eslint-disable-next-line no-console
+console.debug(`Server listening on port ${PORT}`);
 
 app.post('/api/v1/on-covid-19', (req, res) => {
   // Define the request values
@@ -121,6 +115,6 @@ app.post('/api/v1/on-covid-19/xml', (req, res) => {
   // Estimate using the estimator function
   // eslint-disable-next-line no-undef
   const doer = estimator(data);
-  res.set('Content-Type', 'text/xml');
+  res.set('Content-Type', 'application/xml');
   res.send(xml(doer));
 });
