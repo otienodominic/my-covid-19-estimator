@@ -35,7 +35,7 @@ const covid19ImpactEstimator = (data) => {
   );
 
   // Challenge Three:
-  // impact on ICUs
+  // impact on ICUs in the hospitals
   const requireICUone = Math.trunc(0.05 * infectedBytimeOne);
   const requireICUtwo = Math.trunc(0.05 * infectedBytimeTwo);
   // Impact on Ventilators
