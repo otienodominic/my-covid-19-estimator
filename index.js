@@ -1,4 +1,7 @@
 const express = require('express');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
 const cors = require('cors');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -13,10 +16,25 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(bodyParser());
 
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, 'access.js'),
+  { flags: 'a' }
+);
+// setup the logger
+app.use(
+  morgan(':method :url :status :total-time ms', { stream: accessLogStream })
+);
+
+app.get('/api/v1/on-covid-19/logs', (req, res) => {
+  const data = fs.readFileSync(path.join(__dirname, './access.js'));
+  res.status(200).send(data);
+});
+// server to listen to the port
 server.listen(PORT);
 // eslint-disable-next-line no-console
 console.debug(`Server listening on port ${PORT}`);
 
+// Endpoint to the default request
 app.post('/api/v1/on-covid-19', (req, res) => {
   // Define the request values
   const {
@@ -30,7 +48,6 @@ app.post('/api/v1/on-covid-19', (req, res) => {
     population,
     totalHospitalBeds
   } = req.body;
-
   // eslint-disable-next-line no-undef
   data = {
     region: {
@@ -84,6 +101,7 @@ app.post('/api/v1/on-covid-19/json', (req, res) => {
   const doer = estimator(data);
   res.json(doer);
 });
+// Endpoint to the xml response
 app.post('/api/v1/on-covid-19/xml', (req, res) => {
   // Define the request values
   const {
@@ -97,8 +115,6 @@ app.post('/api/v1/on-covid-19/xml', (req, res) => {
     population,
     totalHospitalBeds
   } = req.body;
-
-  // eslint-disable-next-line no-undef
 
   // eslint-disable-next-line no-undef
   data = {

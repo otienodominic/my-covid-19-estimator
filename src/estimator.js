@@ -43,8 +43,10 @@ const covid19ImpactEstimator = (data) => {
   const requireVentilatorTwo = Math.trunc(infectedBytimeTwo * 0.02);
   // Impact on the Economy
   // eslint-disable-next-line max-len
-  const dailyPopulation = input.region.avgDailyIncomePopulation;
-  const dailyIncome = input.region.avgDailyIncomeInUSD;
+  // eslint-disable-next-line radix
+  const dailyPopulation = (input.region.avgDailyIncomePopulation);
+  // eslint-disable-next-line radix
+  const dailyIncome = (input.region.avgDailyIncomeInUSD);
   // eslint-disable-next-line max-len
   const dollarsLostOne = Math.trunc((infectedBytimeOne * dailyPopulation * dailyIncome) / period);
   // eslint-disable-next-line max-len
