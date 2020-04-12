@@ -4,14 +4,23 @@ const bodyParser = require('body-parser');
 const xml = require('object-to-xml');
 const estimator = require('./src/estimator');
 
+const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
 const app = express();
+app.set('port', PORT);
+app.set('env', NODE_ENV);
 
 app.use(cors());
 app.use(bodyParser());
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('Server Works !!! At port 4000');
+  console.log(
+    `Express Server started on Port ${app.get(
+      'port'
+    )} | Environment : ${app.get('env')}`
+  );
 });
 
 app.post('/api/v1/on-covid-19', (req, res) => {
