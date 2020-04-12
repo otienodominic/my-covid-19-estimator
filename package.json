@@ -1,7 +1,10 @@
 {
-  "name": "covid-19-estimator-js",
+  "name": "covid-19-estimator",
   "version": "1.0.0",
-  "repository": "git@github.com:BuildforSDG-Cohort1-Assessment/covid-19-estimator-js.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/BuildforSDG-Cohort1-Assessment/covid-19-estimator-js.git"
+  },
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -31,5 +34,12 @@
   },
   "browserslist": [
     "last 1 Chrome versions"
-  ]
+  ],
+  "description": "> Build an overly simplified COVID-19 infection impact estimator",
+  "bugs": {
+    "url": "https://github.com/BuildforSDG-Cohort1-Assessment/covid-19-estimator-js/issues"
+  },
+  "homepage": "https://github.com/BuildforSDG-Cohort1-Assessment/covid-19-estimator-js#readme",
+  "main": "index.js",
+  "author": ""
 }
