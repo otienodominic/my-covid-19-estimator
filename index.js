@@ -99,6 +99,8 @@ app.post('/api/v1/on-covid-19/xml', (req, res) => {
   } = req.body;
 
   // eslint-disable-next-line no-undef
+
+  // eslint-disable-next-line no-undef
   data = {
     region: {
       name,
