@@ -22,13 +22,13 @@ const accessLogStream = fs.createWriteStream(
 );
 // setup the logger
 app.use(
-  morgan(':method :url :status :response-time[0]ms\n', {
+  morgan(':method\t:url\t:status\t:response-time[0]ms\n', {
     stream: accessLogStream
   })
 );
 
 app.get('/api/v1/on-covid-19/logs', (req, res) => {
-  const data = fs.readFileSync(path.join(__dirname, './access.txt'));
+  const data = fs.readFileSync(path.join(__dirname, './access.txt'), 'utf8');
   res.status(200).send(data);
 });
 // server to listen to the port
