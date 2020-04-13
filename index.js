@@ -22,7 +22,9 @@ const accessLogStream = fs.createWriteStream(
 );
 // setup the logger
 app.use(
-  morgan(':method :url :status :total-time ms', { stream: accessLogStream })
+  morgan(':method :url :status :response-time[0]ms\n', {
+    stream: accessLogStream
+  })
 );
 
 app.get('/api/v1/on-covid-19/logs', (req, res) => {
@@ -38,10 +40,7 @@ console.debug(`Server listening on port ${PORT}`);
 app.post('/api/v1/on-covid-19', (req, res) => {
   // Define the request values
   const {
-    name,
-    avgAge,
-    avgDailyIncomeInUSD,
-    avgDailyIncomePopulation,
+    region,
     periodType,
     timeToElapse,
     reportedCases,
@@ -51,10 +50,10 @@ app.post('/api/v1/on-covid-19', (req, res) => {
   // eslint-disable-next-line no-undef
   data = {
     region: {
-      name,
-      avgAge,
-      avgDailyIncomeInUSD,
-      avgDailyIncomePopulation
+      name: region.name,
+      avgAge: region.avgAge,
+      avgDailyIncomeInUSD: region.avgDailyIncomeInUSD,
+      avgDailyIncomePopulation: region.avgDailyIncomePopulation
     },
     periodType,
     timeToElapse,
@@ -71,24 +70,20 @@ app.post('/api/v1/on-covid-19', (req, res) => {
 app.post('/api/v1/on-covid-19/json', (req, res) => {
   // Define the request values
   const {
-    name,
-    avgAge,
-    avgDailyIncomeInUSD,
-    avgDailyIncomePopulation,
+    region,
     periodType,
     timeToElapse,
     reportedCases,
     population,
     totalHospitalBeds
   } = req.body;
-
   // eslint-disable-next-line no-undef
   data = {
     region: {
-      name,
-      avgAge,
-      avgDailyIncomeInUSD,
-      avgDailyIncomePopulation
+      name: region.name,
+      avgAge: region.avgAge,
+      avgDailyIncomeInUSD: region.avgDailyIncomeInUSD,
+      avgDailyIncomePopulation: region.avgDailyIncomePopulation
     },
     periodType,
     timeToElapse,
@@ -105,24 +100,20 @@ app.post('/api/v1/on-covid-19/json', (req, res) => {
 app.post('/api/v1/on-covid-19/xml', (req, res) => {
   // Define the request values
   const {
-    name,
-    avgAge,
-    avgDailyIncomeInUSD,
-    avgDailyIncomePopulation,
+    region,
     periodType,
     timeToElapse,
     reportedCases,
     population,
     totalHospitalBeds
   } = req.body;
-
   // eslint-disable-next-line no-undef
   data = {
     region: {
-      name,
-      avgAge,
-      avgDailyIncomeInUSD,
-      avgDailyIncomePopulation
+      name: region.name,
+      avgAge: region.avgAge,
+      avgDailyIncomeInUSD: region.avgDailyIncomeInUSD,
+      avgDailyIncomePopulation: region.avgDailyIncomePopulation
     },
     periodType,
     timeToElapse,
