@@ -1,4 +1,5 @@
 const covid19ImpactEstimator = (data) => {
+  // eslint-disable-next-line no-shadow
   const normalisedPeriod = (data) => {
     const duration = data.periodType.toString().toLowerCase();
     const time = data.timeToElapse;
