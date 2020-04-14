@@ -1,37 +1,8 @@
+GET	/api/v1/on-covid-19/logs	200	        06ms
 
-GET	/api/v1/on-covid-19/logs	200	00ms
+GET	/api/v1/on-covid-19/logs	200	        03ms
 
-GET	/api/v1/on-covid-19/logs	200	00ms
+GET	/api/v1/on-covid-19/logs	200	        01ms
 
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-POST	/api/v1/on-covid-19	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-POST	/api/v1/on-covid-19	200	00ms
-
-POST	/api/v1/on-covid-19	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
-
-GET	/api/v1/on-covid-19/logs	200	00ms
+GET	/api/v1/on-covid-19/logs	200	        01ms
 

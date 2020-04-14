@@ -10,8 +10,6 @@ const estimator = require('./src/estimator');
 
 const PORT = process.env.PORT || 3000;
 
-morgan.token('responseTime', (req) => req.responseTime);
-
 const app = express();
 const server = http.createServer(app);
 
@@ -27,10 +25,31 @@ const accessLogStream = fs.createWriteStream(
 // Writing a function that can get time response
 // eslint-disable-next-line no-use-before-define
 
-// eslint-disable-next-line no-use-before-define
-app.use(assignTime);
+
+function repeatStr(str, count) {
+  let finalStr = `${str}`;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < count; i++) {
+    finalStr += str;
+  }
+  return finalStr;
+}
+
+morgan.token('response', (req, res) => {
+  // eslint-disable-next-line no-underscore-dangle
+  if (!res._header || !req._startAt) return '';
+  // eslint-disable-next-line no-underscore-dangle
+  const diff = process.hrtime(req._startAt);
+  let ms = diff[0] * 1e3 + diff[1] * 1e-6;
+  ms = ms.toFixed(0);
+  const timeLength = 8; // length of final string
+  // format result:
+  // eslint-disable-next-line no-undef
+  return (`${ms}`).length > timeLength ? ms : `${repeatStr(' ', timeLength - (`${ms}`).length)}${ms.toString().padStart(2, '0')}ms`;
+});
+
 app.use(
-  morgan(':method\t:url\t:status\t:responseTime\n', {
+  morgan(':method\t:url\t:status\t:response\n', {
     stream: accessLogStream
   })
 );
@@ -143,11 +162,3 @@ app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
   res.send(xml(doer));
   next();
 });
-
-const start = new Date();
-const time = new Date() - start;
-
-function assignTime(req, res, next) {
-  req.responseTime = `${time.toString().padStart(2, '0')}ms`;
-  next();
-}
