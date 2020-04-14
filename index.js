@@ -23,18 +23,6 @@ const accessLogStream = fs.createWriteStream(
 // setup the logger
 
 // Writing a function that can get time response
-// eslint-disable-next-line no-use-before-define
-
-
-function repeatStr(str, count) {
-  let finalStr = `${str}`;
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < count; i++) {
-    finalStr += str;
-  }
-  return finalStr;
-}
-
 morgan.token('response', (req, res) => {
   // eslint-disable-next-line no-underscore-dangle
   if (!res._header || !req._startAt) return '';
@@ -42,11 +30,6 @@ morgan.token('response', (req, res) => {
   const diff = process.hrtime(req._startAt);
   let ms = diff[0] * 1e3 + diff[1] * 1e-6;
   ms = ms.toFixed(0);
-  // const timeLength = 8; // length of final string
-  // format result:
-  // eslint-disable-next-line no-undef
-  // eslint-disable-next-line max-len
-  // return (`${ms}`).length > timeLength ? ms : `${repeatStr(' ', timeLength - (`${ms}`).length)}${ms.toString().padStart(2, '0')}ms`;
   return `${ms.toString().padStart(2, '0')}ms`;
 });
 
@@ -57,11 +40,38 @@ app.use(
 );
 
 app.get('/api/v1/on-covid-19/logs', (req, res, next) => {
-  const data = fs.readFileSync(path.join(__dirname, './access.txt'), {
-    encoding: 'utf8', 'Content-Type': 'text/plain'});
-  res.status(200).send(data);
+  const data = fs.readFileSync(path.join(__dirname, './access.txt'), { encoding: 'utf8' });
+  res.format({
+    // eslint-disable-next-line func-names
+    'text/plain': function () {
+      res.status(200).send(data);
+    }
+  });
   next();
 });
+
+/*
+app.get('/api/v1/on-covid-19/logs', (req, res, next) => {
+  const data = fs.readFile('./access.txt', 'utf8', (err, data) => {
+    res.format({'text/plain': function () {
+        res.send(data)
+      }
+  })
+})
+
+fs.readFile('./access.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  // line by line
+  // eslint-disable-next-line no-undef
+  res.format({
+    // eslint-disable-next-line func-names
+    'text/plain': function () {
+      // eslint-disable-next-line no-undef
+      res.status(200).send(data);
+    }
+  });
+});
+*/
 // server to listen to the port
 server.listen(PORT);
 // eslint-disable-next-line no-console

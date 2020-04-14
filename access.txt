@@ -1,40 +1,28 @@
-GET	/api/v1/on-covid-19/logs	200	        06ms
+GET /api/v1/on-covid-19/logs 200 02ms
 
-GET	/api/v1/on-covid-19/logs	200	        03ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
-GET	/api/v1/on-covid-19/logs	200	        01ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
-GET	/api/v1/on-covid-19/logs	200	        01ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
-GET	/api/v1/on-covid-19/logs	200	       15ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
-POST	/api/v1/on-covid-19	200	        02ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
-POST	/api/v1/on-covid-19	200	        01ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
-GET		/api/v1/on-covid-19/logs		200		        07ms
+POST /api/v1/on-covid-19 200 01ms
 
-GET		/api/v1/on-covid-19/logs		200		        02ms
+POST /api/v1/on-covid-19 200 01ms
 
-GET		/api/v1/on-covid-19/logs		200		        02ms
+POST /api/v1/on-covid-19/xml 200 03ms
 
-GET		/api/v1/on-covid-19/logs		200		10ms
+POST /api/v1/on-covid-19/json 200 01ms
 
-GET		/api/v1/on-covid-19/logs		200		02ms
+GET /api/v1/on-covid-19/json 404 02ms
 
-POST		/api/v1/on-covid-19		200		02ms
+GET /api/v1/on-covid-19/xml 404 01ms
 
-POST		/api/v1/on-covid-19		200		01ms
-
-GET		/api/v1/on-covid-19/json		404		02ms
-
-GET		/api/v1/on-covid-19/json		404		01ms
-
-GET		/api/v1/on-covid-19/xml		404		00ms
-
-GET		/api/v1/on-covid-19/xml		404		01ms
-
-GET		/api/v1/on-covid-19/logs		200		01ms
-
-GET /api/v1/on-covid-19/logs 200 09ms
+GET /api/v1/on-covid-19/logs 200 01ms
 
