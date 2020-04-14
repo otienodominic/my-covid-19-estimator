@@ -42,14 +42,16 @@ morgan.token('response', (req, res) => {
   const diff = process.hrtime(req._startAt);
   let ms = diff[0] * 1e3 + diff[1] * 1e-6;
   ms = ms.toFixed(0);
-  const timeLength = 8; // length of final string
+  // const timeLength = 8; // length of final string
   // format result:
   // eslint-disable-next-line no-undef
-  return (`${ms}`).length > timeLength ? ms : `${repeatStr(' ', timeLength - (`${ms}`).length)}${ms.toString().padStart(2, '0')}ms`;
+  // eslint-disable-next-line max-len
+  // return (`${ms}`).length > timeLength ? ms : `${repeatStr(' ', timeLength - (`${ms}`).length)}${ms.toString().padStart(2, '0')}ms`;
+  return `${ms.toString().padStart(2, '0')}ms`;
 });
 
 app.use(
-  morgan(':method\t\t:url\t\t:status\t\t:response\n', {
+  morgan(':method :url :status :response\n', {
     stream: accessLogStream
   })
 );
