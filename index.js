@@ -49,16 +49,14 @@ morgan.token('response', (req, res) => {
 });
 
 app.use(
-  morgan(':method\t:url\t:status\t:response\n', {
+  morgan(':method\t\t:url\t\t:status\t\t:response\n', {
     stream: accessLogStream
   })
 );
 
 app.get('/api/v1/on-covid-19/logs', (req, res, next) => {
   const data = fs.readFileSync(path.join(__dirname, './access.txt'), {
-    encoding: 'utf8',
-    'Content-Type': 'text/plain'
-  });
+    encoding: 'utf8', 'Content-Type': 'text/plain'});
   res.status(200).send(data);
   next();
 });

@@ -6,3 +6,9 @@ GET	/api/v1/on-covid-19/logs	200	        01ms
 
 GET	/api/v1/on-covid-19/logs	200	        01ms
 
+GET	/api/v1/on-covid-19/logs	200	       15ms
+
+POST	/api/v1/on-covid-19	200	        02ms
+
+POST	/api/v1/on-covid-19	200	        01ms
+
